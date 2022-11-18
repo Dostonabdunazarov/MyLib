@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MyLib.Models;
+﻿using MyLib.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace MyLib.Controllers
@@ -14,11 +15,6 @@ namespace MyLib.Controllers
         }
 
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }

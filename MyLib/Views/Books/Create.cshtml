@@ -1,0 +1,65 @@
+﻿@model MyLib.Models.Book
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3>Создание книг</h3>
+
+<hr />
+<div class="row">
+    <form asp-controller="Books" asp-action="Create" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Title" class="control-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="DatePublish" class="control-label"></label>
+            <input asp-for="DatePublish" class="form-control" />
+            <span asp-validation-for="DatePublish" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <span><b>Загрузка файла</b></span> <br />
+            <input type="file" asp-for="FilePath" name="userfile" /> <br /><br />
+            <span asp-validation-for="FilePath" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <p class="font-weight-bolder">Жанры:</p>
+            @if (ViewBag.Genres != null)
+            {
+                <div class="form-group">
+                    @foreach (Genre i in ViewBag.Genres)
+                    {
+                        <input type="radio" name="selectedGenre" value="@i.Id" /> @i.Name
+                        <br>
+                    }
+                </div>
+            }
+        </div>
+        <div class="form-group">
+            <p class="font-weight-bolder">Авторы:</p>
+            @if (ViewBag.Authors != null)
+            {
+                <div class="form-group">
+
+                    @foreach (Author i in ViewBag.Authors)
+                    {
+                        <input type="checkbox" name="selectedAuthors" value="@i.Id" /> @i.FullName
+                        <br>
+                    }
+                </div>
+            }
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,36 @@
+﻿@model MyLib.Models.Book
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h3>Подробно</h3>
+
+<div class="display-label"><b>Название</b></div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Title)
+
+</div>
+<div class="display-label"><b>Дата издании</b></div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.DatePublish)
+</div>
+
+<div class="display-label"><b>Жанр</b></div>
+<div class="display-field">
+    <ul>
+        <li>@Html.DisplayFor(model => model.Genre.Name)</li>
+    </ul>
+</div>
+
+<div class="display-label"><b>Авторы</b></div>
+<ul>
+    @foreach (Author a in Model.Authors) {
+        <li>@a.FullName</li>
+    }
+</ul>
+
+
+<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+<a asp-action="Index">Back to List</a>
+
